@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Offers from "./containers/Offers";
 import Offer from "./containers/Offer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Signup from "./containers/Signup";
+import Login from "./containers/Login";
 
 import axios from "axios";
-import Logo from "./logo.jpg";
 
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  const [user, setUser] = useState(null);
   const fetchData = async () => {
     const response = await axios.get(
       "https://leboncoin-julie.herokuapp.com/offer/with-count"
@@ -31,13 +33,8 @@ function App() {
     <span>En cours de chargement... </span>
   ) : (
     <div className="App">
-      <header>
-        <img className="logo" alt="logo" src={Logo} />
-        <button className="new-offer">Déposer une annonce</button>
-        <button className="research">Rechercher</button>
-        <button className="to-connect">Se connecter</button>
-      </header>
       <Router>
+        <Header user={user} setUser={setUser} />
         <Switch>
           <Route path="/offer/:id">
             <Offer data={data} />
@@ -45,8 +42,15 @@ function App() {
           <Route path="/offers">
             <Offers data={data} />
           </Route>
+          <Route path="/log-in">
+            <Login setUser={setUser} />
+          </Route>
+          <Route path="/sign-up">
+            <Signup setUser={setUser} />
+          </Route>
         </Switch>
       </Router>
+      <Footer />
     </div>
   );
 }

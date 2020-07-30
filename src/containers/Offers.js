@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Advert from "../components/Advert";
 import Search from "../components/Search";
 
-import Logo from "../logo.jpg";
 const Offers = ({ data }) => {
   return (
     <>
