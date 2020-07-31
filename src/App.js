@@ -8,13 +8,24 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
-
 import axios from "axios";
+import Cookies from "js-cookie";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faPlusSquare,
+  faSearch,
+  faUser,
+  faClock,
+  faBell,
+  faEye,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faPlusSquare, faSearch, faUser, faClock, faBell, faEye);
 
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const token = Cookies.get("token");
+  const [user, setUser] = useState(token || null);
   const fetchData = async () => {
     const response = await axios.get(
       "https://leboncoin-julie.herokuapp.com/offer/with-count"
@@ -49,8 +60,8 @@ function App() {
             <Signup setUser={setUser} />
           </Route>
         </Switch>
+        <Footer className="footer" lieu="Le Reacteur" name="Julie" />
       </Router>
-      <Footer />
     </div>
   );
 }

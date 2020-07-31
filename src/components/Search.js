@@ -1,11 +1,12 @@
 import React from "react";
-
 const Search = () => {
   return (
     <>
-      <form className="form">
+      <div className="orange-part"></div>
+      <form className="search-form">
         <div className="search-part-1">
           <input
+            className="input-search"
             placeholder="Que recherchez-vous?"
             type="text"
             onChange={() => {}}
@@ -15,11 +16,24 @@ const Search = () => {
           </button>
         </div>
         <div className="search-part-2">
-          Prix entre
-          <input placeholder="prix min" type="text" onChange={() => {}}></input>
-          et
-          <input placeholder="prix max" type="text" onChange={() => {}}></input>
+          <div className="prix">
+            <div className="search-text-1">Prix entre</div>
+            <input
+              className="prix-min"
+              placeholder="prix min"
+              type="text"
+              onChange={() => {}}
+            ></input>
+            <div className="search-text-2">et</div>
+            <input
+              className="prix-max"
+              placeholder="prix max"
+              type="text"
+              onChange={() => {}}
+            ></input>
+          </div>
           <input
+            className="tri"
             placeholder="Tri : Plus récentes"
             type="text"
             onChange={() => {}}

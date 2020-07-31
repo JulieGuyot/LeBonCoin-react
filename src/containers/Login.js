@@ -8,9 +8,9 @@ const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <div className="form">
-      Formulaire de Connexion
+    <div className="all">
       <form
+        className="form"
         onSubmit={async (event) => {
           event.preventDefault();
           const response = await axios.post(
@@ -31,25 +31,32 @@ const Login = ({ setUser }) => {
           }
         }}
       >
-        <div>Adresse email</div>
+        <div className="form-title"> Connexion</div>
+        <div className="subtitle">Adresse email</div>
         <input
+          className="input-connect"
           placeholder="email"
           type="text"
           onChange={(event) => {
             setEmail(event.target.value);
           }}
         ></input>
-        <div>Mot de passe</div>
+        <div className="subtitle">Mot de passe</div>
         <input
+          className="input-connect"
           placeholder="password"
           type="password"
           onChange={(event) => {
             setPassword(event.target.value);
           }}
         ></input>
-        <button type="submit"> Se Connecter </button>
-        Vous n'avez pas de compte ?
+        <button className="submit" type="submit">
+          {" "}
+          Se Connecter{" "}
+        </button>
+        <span className="subtitle-2">Vous n'avez pas de compte ?</span>
         <button
+          className="button-create"
           onClick={() => {
             history.push("/sign-up");
           }}
