@@ -12,7 +12,7 @@ const Offer = () => {
 
   const fetchData = async () => {
     const response = await axios.get(
-      "https://leboncoin-julie.herokuapp.com/offer/with-count"
+      "https://leboncoin-julie.herokuapp.com/offer/" + id
     );
     console.log(response.data);
     setData(response.data);
@@ -28,21 +28,13 @@ const Offer = () => {
     <span>En cours de chargement... </span>
   ) : (
     <div>
-      {data.offers.map((element, index) => {
-        if (element._id === id) {
-          return (
-            <div>
-              <DetailedAdvert
-                image={element.picture.url}
-                title={element.title}
-                price={element.price}
-                creation={element.created}
-                description={element.description}
-              />
-            </div>
-          );
-        }
-      })}
+      <DetailedAdvert
+        image={data.picture.url}
+        title={data.title}
+        price={data.price}
+        creation={data.created}
+        description={data.description}
+      />
     </div>
   );
 };

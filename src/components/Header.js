@@ -10,11 +10,15 @@ const Header = ({ user, setUser }) => {
     <div className="header">
       <div className="header-container">
         <div className="left-part">
-          <img className="logo" alt="logo" src={Logo} />
-          <button className="new-offer">
-            <FontAwesomeIcon className="square" icon="plus-square" />
-            Déposer une annonce
-          </button>
+          <Link to="/offers">
+            <img className="logo" alt="logo" src={Logo} />
+          </Link>
+          <Link to="/publish">
+            <button className="new-offer">
+              <FontAwesomeIcon className="square" icon="plus-square" />
+              Déposer une annonce
+            </button>
+          </Link>
           <button className="research">
             {" "}
             <FontAwesomeIcon className="search" icon="search" />
@@ -23,7 +27,7 @@ const Header = ({ user, setUser }) => {
         </div>
         <div className="right-part">
           {user === null ? (
-            <Link className="to-connect" to="/log-in" className="to-connect">
+            <Link className="to-connect" to="/log-in">
               <div>
                 <FontAwesomeIcon className="user" icon="user" />
               </div>{" "}

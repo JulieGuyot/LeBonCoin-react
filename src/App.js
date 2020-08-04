@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Offers from "./containers/Offers";
 import Offer from "./containers/Offer";
+import Publish from "./containers/Publish";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Signup from "./containers/Signup";
@@ -24,6 +25,7 @@ library.add(faPlusSquare, faSearch, faUser, faClock, faBell, faEye);
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [hidden, setHidden] = useState(false);
   const token = Cookies.get("token");
   const [user, setUser] = useState(token || null);
   const fetchData = async () => {
@@ -51,13 +53,16 @@ function App() {
             <Offer data={data} />
           </Route>
           <Route path="/offers">
-            <Offers data={data} />
+            <Offers data={data} setData={setData} />
           </Route>
           <Route path="/log-in">
             <Login setUser={setUser} />
           </Route>
           <Route path="/sign-up">
             <Signup setUser={setUser} />
+          </Route>
+          <Route path="/publish">
+            <Publish />
           </Route>
         </Switch>
         <Footer className="footer" lieu="Le Reacteur" name="Julie" />

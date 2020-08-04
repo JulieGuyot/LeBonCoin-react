@@ -10,6 +10,7 @@ const Signup = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [checkbox, setCheckbox] = useState(false);
 
   return (
     <div className="all-sign-up">
@@ -51,7 +52,13 @@ const Signup = ({ setUser }) => {
         className="sign-up-form"
         onSubmit={async (event) => {
           event.preventDefault();
-          if (password === passwordConfirm) {
+          if (!username || !email || !password || !passwordConfirm) {
+            alert("Veuillez remplir tous les champs");
+          } else if (password !== passwordConfirm) {
+            alert("Les mots de passe doivent être identiques");
+          } else if (checkbox === false) {
+            alert("Veuillez accepter les CGV et CGU");
+          } else {
             const response = await axios.post(
               "https://leboncoin-julie.herokuapp.com/user/sign_up",
               {
@@ -60,13 +67,9 @@ const Signup = ({ setUser }) => {
                 account: { username: username },
               }
             );
-            console.log(response.data);
-            const token = response.data.token;
-            Cookies.set("token", token);
-            setUser({ token: token });
-            history.push("/offers");
-          } else {
-            alert("Les mots de passe doivent être identiques");
+            if (response.data.token) {
+              history.push("/offers");
+            }
           }
         }}
       >
@@ -118,7 +121,11 @@ const Signup = ({ setUser }) => {
           </div>
         </div>
         <div className="checkbox">
-          <input className="box" type="checkbox"></input>
+          <input
+            className="box"
+            type="checkbox"
+            onChange={() => setCheckbox(true)}
+          ></input>
           <div className="condition">
             "J'accepte les Conditions Générales de Vente et les Conditions
             Générales d'Utilisation"

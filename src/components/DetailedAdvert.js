@@ -11,7 +11,9 @@ const DetailedAdvert = ({ title, price, image, creation, description }) => {
         />
         <div className="detailed-offer-title">{title}</div>
         <div className="detailed-offer-price">{price} €</div>
-        <div className="detailed-offer-creation">{creation}</div>
+        <div className="detailed-offer-creation">
+          {creation.slice(0, 10)} | {creation.slice(11, 16)}
+        </div>
       </div>
       <div className="part-2">
         <div className="description">Description </div>

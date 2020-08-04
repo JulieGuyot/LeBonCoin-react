@@ -7,7 +7,9 @@ const Advert = ({ title, price, image, creation }) => {
       <div className="one-offer-text">
         <div className="one-offer-title">{title}</div>
         <div className="one-offer-price">{price} €</div>
-        <div className="one-offer-creation">{creation}</div>
+        <div className="one-offer-creation">
+          {creation.slice(0, 10)} | {creation.slice(11, 16)}
+        </div>
       </div>
     </div>
   );
