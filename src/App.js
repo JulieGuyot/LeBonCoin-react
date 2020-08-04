@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Signup from "./containers/Signup";
 import Login from "./containers/Login";
+import Payment from "./containers/Payment";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -63,6 +64,9 @@ function App() {
           </Route>
           <Route path="/publish">
             <Publish />
+          </Route>
+          <Route path="/payment">
+            <Payment />
           </Route>
         </Switch>
         <Footer className="footer" lieu="Le Reacteur" name="Julie" />

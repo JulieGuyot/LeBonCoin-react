@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 const Publish = () => {
   const history = useHistory();
@@ -9,34 +9,28 @@ const Publish = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState();
-
   const token = Cookies.get("token");
 
-  return (
-    <div className="publish-page">
-      <form
-        className="publish-form"
-        onSubmit={async (event) => {
-          event.preventDefault();
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("description", description);
-          formData.append("price", price);
-          formData.append("picture", file);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("picture", file);
 
-          const response = await axios.post(
-            "https://leboncoin-julie.herokuapp.com/offer/publish",
-            formData,
-            { headers: { authorization: "Bearer " + token } }
-          );
-          if (token) {
-            const id = response.data._id;
-            history.push("/offer/" + id);
-          } else {
-            history.push("/log-in");
-          }
-        }}
-      >
+    const response = await axios.post(
+      "https://leboncoin-julie.herokuapp.com/offer/publish",
+      formData,
+      { headers: { authorization: "Bearer " + token } }
+    );
+
+    const id = response.data._id;
+    history.push("/offer/" + id);
+  };
+  return token ? (
+    <div className="publish-page">
+      <form className="publish-form" onSubmit={handleSubmit}>
         <div className="publish-title">Déposer une annonce</div>
         <h3>Titre de l'annonce *</h3>
         <input
@@ -68,6 +62,8 @@ const Publish = () => {
         <input className="valid-button" type="submit" value="Valider" />
       </form>
     </div>
+  ) : (
+    <Redirect to="log-in" />
   );
 };
 

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import axios from "axios";
 import DetailedAdvert from "../components/DetailedAdvert";
 
 const Offer = () => {
   const { id } = useParams();
-
+  const history = useHistory();
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const token = Cookies.get("token");
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -27,14 +30,33 @@ const Offer = () => {
   return isLoading ? (
     <span>En cours de chargement... </span>
   ) : (
-    <div>
+    <div className="all-offer">
       <DetailedAdvert
         image={data.picture.url}
         title={data.title}
         price={data.price}
         creation={data.created}
         description={data.description}
-      />
+      />{" "}
+      {token ? (
+        <button
+          onClick={() => {
+            history.push("/payment", {
+              title: data.title,
+              price: data.price,
+              description: data.description,
+              img: data.picture.url,
+            });
+          }}
+          className="buy-button"
+        >
+          Acheter
+        </button>
+      ) : (
+        <Link to="/log-in" className="buy-button">
+          Acheter
+        </Link>
+      )}
     </div>
   );
 };

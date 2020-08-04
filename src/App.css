@@ -266,6 +266,11 @@
 
   line-height: 40px;
 }
+
+.all-offer {
+  display: flex;
+  align-items: center;
+}
 .part-1 {
   background-color: white;
   box-shadow: 10px 10px 10px #cad1d9;
@@ -314,6 +319,14 @@
   line-height: 40px;
 }
 
+.buy-button {
+  background-color: #f56b2a;
+  color: white;
+  border: none;
+  font-size: 24px;
+  width: 320px;
+  margin: 100px 50px;
+}
 /* LOG IN*/
 
 .all {
@@ -362,6 +375,7 @@ button {
 }
 .submit {
   background-color: #4183d7;
+  width: 100%;
   color: white;
   font-size: 24px;
   padding: 22px 10px;
@@ -379,6 +393,7 @@ button {
   margin-top: 15px;
   margin-bottom: 25px;
   border-radius: 10px 10px;
+  width: 100%;
 }
 
 .subtitle {
@@ -471,6 +486,7 @@ button {
 
 .register-button {
   background-color: #4183d7;
+  width: 100%;
   color: white;
   font-size: 26px;
   margin-top: 40px;
@@ -582,9 +598,25 @@ h3 {
 
 .publish-photo {
   font-size: 20px;
-
   font-family: "Roboto", sans-serif;
 }
+
+/*PAYMENT*/
+
+.payment {
+  margin-top: 60px;
+  width: 30%;
+  line-height: 30px;
+}
+.buy {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
 /*FOOTER*/
 
 .footer {
